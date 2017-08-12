@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block title %}Dojo Survey in Django{% endblock %}
+{% block body %}
+
+<h2>Are you sure you want to delete the following course?</h2>
+<p>Name: {{courses.name}}</p>
+Description: {{description}}
+
+
+<form action="/" method="post">
+  {% csrf_token %}
+  <input type="submit" name="" value="NO">
+</form>
+<form action="/delete{{course.id}}" method="post">
+  {% csrf_token %}
+  <input type="submit" name="" value="YES, Delete it.">
+</form>
+
+
+
+
+{% endblock %}

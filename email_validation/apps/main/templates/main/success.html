@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}Dojo Survey in Django{% endblock %}
+{% block body %}
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>language</th>
+    <th>Comment</th>
+  </tr>
+  <tr>
+    <td>{{request.session.name}}</td>
+    <td>{{request.session.location}}</td>
+    <td>{{request.session.language}}</td>
+    <td>{{request.session.comment}}</td>
+  </tr>
+</table>
+<form action="/" method="post">
+  {% csrf_token %}
+  <input type="submit" name="" value="Home">
+</form>
+
+
+
+{% endblock %}

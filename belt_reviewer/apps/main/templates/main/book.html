@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block title %}Title{% endblock %}
+{% block body %}
+
+<h1>{{book.title}}</h1>
+<h2>{{book.authors}}</h2>
+
+<div>
+
+{% for review in reviews %}
+<h6>Rating {{review.rating}}</h6>
+<a href="/user/{{reveiw.user.id}}">{{review.user.name}}</a>{{review.review}}
+{{review.created_at}}
+{% endfor %}
+</div>
+
+<div>
+  <h4>Add a review</h4>
+  <form action="/addReview" method="post">
+    {% csrf_token %}
+    <textarea name="review" rows="8" cols="80"></textarea>
+    <select name="rating">
+      <option value="1"></option>
+      <option value="2"></option>
+      <option value="3"></option>
+      <option value="4"></option>
+      <option value="5"></option>      
+
+    </select>
+  </form>
+</div>
+{% endblock %}

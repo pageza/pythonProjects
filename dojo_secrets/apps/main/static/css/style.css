@@ -1,0 +1,14 @@
+#register {
+  border: 3px solid blue;
+  display: inline-block;
+  width: 40%;
+  height: 300px;
+}
+
+#login {
+  vertical-align: top;
+  border: 3px solid red;
+  display: inline-block;
+  width: 40%;
+  height: 300px;
+}

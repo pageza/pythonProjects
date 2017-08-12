@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block title %}Dojo Survey in Django{% endblock %}
+{% block body %}
+{% load static %}
+      <form action="/surveys" method="post">
+        {% csrf_token %}
+        <h4>Your Name:</h4> <input type="text" name="name" placeholder="Your Name">
+        <h4>Dojo Location:</h4> <select name="location">
+          {% for location in locations%}
+          <option>{{location}}</option>
+          {% endfor %}
+        </select>
+        <h4>Favourite Language:</h4> <select name="language">
+          {% for language in languages %}
+          <option>{{language}}</option>
+          {% endfor %}
+        </select>
+        <h4>Comment:</h4> <textarea name="comment" rows="8" cols="80"></textarea>
+        <input type="submit" value="Submit">
+      </form>
+
+{% endblock %}

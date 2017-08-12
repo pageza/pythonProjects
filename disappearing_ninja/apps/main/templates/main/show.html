@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block title %}Dojo Survey in Django{% endblock %}
+{% block body %}
+
+{% load staticfiles %}
+  {% if word == 'ninjas' %}
+    <img src="{% static 'images/tmnt.png' %}" />
+  {% elif word == 'blue' %}
+    <img src="{% static 'images/leonardo.jpg' %}" />
+  {% elif word == 'purple' %}
+    <img src="{% static 'images/donatello.jpg' %}" />
+  {% elif word == 'red' %}
+    <img src="{% static 'images/raphael.jpg' %}" />
+  {% elif word == 'orange' %}
+    <img src="{% static 'images/michelangelo.jpg' %}" />
+  {% else %}
+    <img src="{% static 'images/notapril.jpg' %}" />
+  {% endif %}
+
+<form action="/" method="post">
+  {% csrf_token %}
+  <input type="submit" name="" value="Home">
+</form>
+
+
+
+{% endblock %}

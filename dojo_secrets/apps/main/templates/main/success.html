@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block title %}Dojo Secrets{% endblock %}
+{% block body %}
+{% load staticfiles%}
+<h1>you are logged in as id {{request.session.user_id}}</h1>
+<div>
+<h2>Hello, {{user.name}} </h2>
+<form action="/create_secret" method="post">
+  {% csrf_token %}
+  <textarea name="secret" rows="8" cols="80"></textarea>
+  <input type="submit" value="Post">
+</form>
+</div>
+<h4><a href="/popsecret">Most Popular Secrets</a></h4>
+<div>
+  <h2>Recent Secrets</h2>
+  {% for  secret in secrets %}
+  <p>{{secret.secret}} {{secret.created_at}} {{secret.likes}} Likes <a href="/like/{{secret.id}}">{{like}}</a>
+  {% if user.id == secret.user.id%}
+  Your posted this <a href="/delete/{{secret.user.id}}">Delete</a>
+
+  {% endif  %}
+  </p>
+  {% endfor %}
+</div>
+
+{% endblock %}

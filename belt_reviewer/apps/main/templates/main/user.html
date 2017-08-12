@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block title %}Title{% endblock %}
+{% block body %}
+
+<h1>you are logged in as id {{request.session.user_id}}</h1>
+<a href="/books">Home</a>
+<a href="/addReview">Add a Review</a>
+<a href="/logout">Logout</a>
+
+<h2>User Alias:  {{user.first_name}}</h2>
+<h3>Name : {{user.first_name}} {{user.last_name}}</h3>
+<h3>Email: {{user.email}}</h3>
+<h3>Total reviews {{user.reviews}}</h3>
+
+ Posted Reviews on the following books:
+ {% for review in reviews %}
+ {{review.book.title}}
+ {% endfor %}
+{% endblock %}

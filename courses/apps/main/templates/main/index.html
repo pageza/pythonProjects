@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block title %}Dojo Survey in Django{% endblock %}
+{% block body %}
+{% load static %}
+  <div id="addPanel">
+      <form action="/addcourse" method="post">
+        {% csrf_token %}
+        <h3>Add a new course</h3>
+        <h4>Name:</h4> <input type="text" name="name" placeholder="Course Name">
+        <h4>Comment:</h4> <textarea name="comment" rows="8" cols="80"></textarea>
+        <input type="submit" value="Add">
+      </form>
+  </div>
+  <div id="displayPanel">
+    <h3>Courses</h3>
+    <table>
+      <tr>
+        <th>Course Name</th>
+        <th>Description</th>
+        <th>Date Added</th>
+        <th>Actions</th>
+      </tr>
+      {% for course in courses %}
+      <tr>
+        <td>{{course.name}}</td>
+        <td>{{course.description}}</td>
+        <td>{{course.created_at}}</td>
+        <td><a href="courses/destroy/{{course.id}}">remove</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+
+{% endblock %}

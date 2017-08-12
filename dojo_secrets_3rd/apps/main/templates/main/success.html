@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block title %}Dojo Survey in Django{% endblock %}
+{% block body %}
+
+<div>
+  {{likes.liked}}
+<h2>Hello, {{user.name}} <a href="/log_out">Log out</a></h2>
+<form action="/create_secret" method="post">
+  {% csrf_token %}
+  <textarea name="secret" rows="8" cols="80"></textarea>
+  <input type="submit" value="Post">
+</form>
+
+</div>
+<h4><a href="/popsecret">Most Popular Secrets</a></h4>
+<div>
+  <h2>Recent Secrets</h2>
+  {% for  secret in secrets %}
+  <p>{{secret.secret}} (){{secret.created_at}}) {{secret.likes.likes}} likes  <a href="/like/{{secret.id}}">Like</a>
+  {% if user.id == secret.user.id%}
+  You posted this <a href="/delete/{{secret.id}}">Delete</a>
+
+  {% endif  %}
+  </p>
+  {% endfor %}
+</div>
+
+{% endblock %}
